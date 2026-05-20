@@ -23,54 +23,55 @@ There are also many Radix and shadcn-style UI utilities in the repo, but the cur
 
 ## Where the Frontend Lives
 
-Unlike the backend, the frontend is not inside a dedicated `frontend/` folder. It lives at the root of the `Serenity/` directory.
+The frontend now lives inside a dedicated `frontend/` folder under the `Serenity/` repository root.
 
 Key files:
 
 ```text
 Serenity/
-|-- package.json
-|-- vite.config.ts
-|-- src/
-|   |-- main.tsx
-|   |-- app/
-|   |   |-- App.tsx
-|   |   |-- api.ts
-|   |   |-- components/
-|   |   |   |-- MoodInput.tsx
-|   |   |   |-- ExerciseSession.tsx
-|   |   |   |-- BreathingStep.tsx
-|   |   |   |-- RegularStep.tsx
-|   |   |   |-- ui/
-|   |-- styles/
-|   |   |-- index.css
-|   |   |-- tailwind.css
-|   |   |-- theme.css
+|-- frontend/
+|   |-- package.json
+|   |-- vite.config.ts
+|   |-- src/
+|   |   |-- main.tsx
+|   |   |-- app/
+|   |   |   |-- App.tsx
+|   |   |   |-- api.ts
+|   |   |   |-- components/
+|   |   |   |   |-- MoodInput.tsx
+|   |   |   |   |-- ExerciseSession.tsx
+|   |   |   |   |-- BreathingStep.tsx
+|   |   |   |   |-- RegularStep.tsx
+|   |   |   |   |-- ui/
+|   |   |-- styles/
+|   |   |   |-- index.css
+|   |   |   |-- tailwind.css
+|   |   |   |-- theme.css
 ```
 
 ## High-Level Architecture
 
 The frontend is organized around a very small app flow:
 
-- `main.tsx` mounts the React application
-- `App.tsx` controls which screen is currently visible
-- `MoodInput.tsx` handles the first screen where the user selects a mood
-- `ExerciseSession.tsx` runs the guided exercise experience
-- `BreathingStep.tsx` renders animated inhale/hold/exhale screens
-- `RegularStep.tsx` renders instruction-based timed steps
-- `api.ts` wraps backend HTTP requests
+- `frontend/src/main.tsx` mounts the React application
+- `frontend/src/app/App.tsx` controls which screen is currently visible
+- `frontend/src/app/components/MoodInput.tsx` handles the first screen where the user selects a mood
+- `frontend/src/app/components/ExerciseSession.tsx` runs the guided exercise experience
+- `frontend/src/app/components/BreathingStep.tsx` renders animated inhale/hold/exhale screens
+- `frontend/src/app/components/RegularStep.tsx` renders instruction-based timed steps
+- `frontend/src/app/api.ts` wraps backend HTTP requests
 
 This is not a multi-page routed app. It behaves more like a state-driven experience where the visible screen changes based on local React state.
 
 ## Application Startup
 
-The frontend entry point is `src/main.tsx`.
+The frontend entry point is `frontend/src/main.tsx`.
 
 What happens there:
 
-1. React creates a root from the `#root` element in `index.html`
+1. React creates a root from the `#root` element in `frontend/index.html`
 2. `App.tsx` is rendered
-3. `src/styles/index.css` is loaded, which imports:
+3. `frontend/src/styles/index.css` is loaded, which imports:
    - `fonts.css`
    - `tailwind.css`
    - `theme.css`
@@ -408,11 +409,11 @@ The frontend styling is built from three layers.
 
 ### 1. Tailwind setup
 
-`src/styles/tailwind.css` imports Tailwind CSS and defines the source scan path for project files.
+`frontend/src/styles/tailwind.css` imports Tailwind CSS and defines the source scan path for project files.
 
 ### 2. Theme tokens
 
-`src/styles/theme.css` defines CSS custom properties for:
+`frontend/src/styles/theme.css` defines CSS custom properties for:
 
 - background colors
 - foreground colors

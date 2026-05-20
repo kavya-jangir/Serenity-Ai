@@ -5,6 +5,9 @@ import { RegularStep } from './RegularStep';
 import { Play, Pause, RotateCcw, X, Volume2, VolumeX } from 'lucide-react';
 import { api } from '../api';
 
+const DEFAULT_API_URL = 'https://serenity-ai-3.onrender.com';
+const API_ORIGIN = (import.meta.env.VITE_API_URL || DEFAULT_API_URL).replace(/\/$/, '');
+
 interface ExerciseSessionProps {
   mood: string;
   onExit: () => void;
@@ -209,7 +212,7 @@ export function ExerciseSession({
       try {
         const response = await api.getSongByEmotion(mood);
         setSongTitle(response.data.title);
-        setAudioUrl(`http://localhost:8080${response.data.streamUrl}`);
+        setAudioUrl(`${API_ORIGIN}${response.data.streamUrl}`);
       } catch (e) {
         setSongTitle(exercise.music);
       }

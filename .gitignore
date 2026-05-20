@@ -13,6 +13,8 @@ target/
 
 # Env
 .env
+.env.local
+.env.*.local
 
 # IDE
 .vscode/
@@ -22,6 +24,7 @@ target/
 .DS_Store
 node_modules/
 frontend/node_modules/
+frontend/dist/
 backend/node_modules/
 serenity/node_modules/
 backend/target/

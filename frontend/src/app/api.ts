@@ -1,4 +1,5 @@
-const API_BASE_URL = 'http://localhost:8080/api';
+const DEFAULT_API_URL = 'https://serenity-ai-3.onrender.com';
+const API_BASE_URL = `${(import.meta.env.VITE_API_URL || DEFAULT_API_URL).replace(/\/$/, '')}/api`;
 
 export interface MoodSubmitRequest {
   mood: string;
