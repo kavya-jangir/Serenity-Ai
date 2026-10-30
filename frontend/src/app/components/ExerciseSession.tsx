@@ -5,7 +5,7 @@ import { RegularStep } from './RegularStep';
 import { Play, Pause, RotateCcw, X, Volume2, VolumeX } from 'lucide-react';
 import { api } from '../api';
 
-const DEFAULT_API_URL = 'https://serenity-ai-3.onrender.com';
+const DEFAULT_API_URL = 'https://serenity-ai-1xzd.onrender.com';
 const API_ORIGIN = (import.meta.env.VITE_API_URL || DEFAULT_API_URL).replace(/\/$/, '');
 
 interface ExerciseSessionProps {
