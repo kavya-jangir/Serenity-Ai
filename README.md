@@ -49,8 +49,8 @@ Key files:
 
 ```text
 Serenity/
+|-- package.json
 |-- frontend/
-|   |-- package.json
 |   |-- vite.config.ts
 |   |-- src/
 |   |   |-- main.tsx

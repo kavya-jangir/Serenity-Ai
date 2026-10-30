@@ -6,6 +6,7 @@ import { Play, Pause, RotateCcw, X, Volume2, VolumeX } from 'lucide-react';
 import { api } from '../api';
 
 const DEFAULT_API_URL = 'https://serenity-ai-1xzd.onrender.com';
+
 const API_ORIGIN = (import.meta.env.VITE_API_URL || DEFAULT_API_URL).replace(/\/$/, '');
 
 interface ExerciseSessionProps {
@@ -19,42 +20,21 @@ type Step =
   | { type: 'regular'; instruction: string; duration: number }
   | { type: 'breathing'; phase: 'inhale' | 'hold' | 'exhale'; duration: number };
 
-const exercises: Record<string, { type: string; duration: string; gradient: string; music: string; steps: Step[] }> = {
+const exercises: Record<
+  string,
+  { type: string; duration: string; gradient: string; music: string; steps: Step[] }
+> = {
   happy: {
     type: 'Gratitude Meditation',
     duration: '5 minutes',
     gradient: 'from-emerald-500 to-teal-600',
     music: 'Uplifting Piano',
     steps: [
-      {
-        type: 'regular',
-        instruction: 'Sit comfortably and close your eyes',
-        duration: 60
-      },
-
-      {
-        type: 'regular',
-        instruction: 'Take 3 deep breaths',
-        duration: 60
-      },
-
-      {
-        type: 'regular',
-        instruction: "Think of 3 things you're grateful for today",
-        duration: 60
-      },
-
-      {
-        type: 'regular',
-        instruction: 'Hold each happy thought in your heart and smile gently',
-        duration: 60
-      },
-
-      {
-        type: 'regular',
-        instruction: 'Feel the warmth spreading through your body',
-        duration: 60
-      },
+      { type: 'regular', instruction: 'Sit comfortably and close your eyes', duration: 60 },
+      { type: 'regular', instruction: 'Take 3 deep breaths', duration: 60 },
+      { type: 'regular', instruction: "Think of 3 things you're grateful for today", duration: 60 },
+      { type: 'regular', instruction: 'Hold each happy thought in your heart and smile gently', duration: 60 },
+      { type: 'regular', instruction: 'Feel the warmth spreading through your body', duration: 60 },
     ],
   },
 
@@ -65,7 +45,6 @@ const exercises: Record<string, { type: string; duration: string; gradient: stri
     music: 'Ocean Waves',
     steps: [
       { type: 'regular', instruction: 'Find a quiet space and sit upright', duration: 30 },
-
       { type: 'regular', instruction: 'Relax your shoulders and jaw', duration: 30 },
 
       // Round 1
@@ -93,7 +72,6 @@ const exercises: Record<string, { type: string; duration: string; gradient: stri
     ],
   },
 
-
   anxious: {
     type: '4-7-8 Breathing',
     duration: '5 minutes',
@@ -101,7 +79,6 @@ const exercises: Record<string, { type: string; duration: string; gradient: stri
     music: 'Gentle Rain',
     steps: [
       { type: 'regular', instruction: 'Sit comfortably and relax your shoulders', duration: 30 },
-
       { type: 'regular', instruction: 'Exhale completely and clear your mind', duration: 30 },
 
       // Round 1
@@ -136,16 +113,13 @@ const exercises: Record<string, { type: string; duration: string; gradient: stri
     music: 'Morning Nature',
     steps: [
       { type: 'regular', instruction: 'Stand tall in Mountain Pose', duration: 60 },
-
       { type: 'regular', instruction: 'Stretch your arms and shoulders gently', duration: 60 },
-
       { type: 'regular', instruction: 'Take deep energizing breaths', duration: 60 },
-
       { type: 'regular', instruction: 'Roll your neck and relax your muscles', duration: 60 },
-
       { type: 'regular', instruction: 'Feel fresh energy flowing through your body', duration: 60 },
     ],
   },
+
   sad: {
     type: 'Heart Meditation',
     duration: '5 minutes',
@@ -153,13 +127,9 @@ const exercises: Record<string, { type: string; duration: string; gradient: stri
     music: 'Soft Strings',
     steps: [
       { type: 'regular', instruction: 'Place your hand gently on your heart', duration: 60 },
-
       { type: 'regular', instruction: 'Take slow and calming breaths', duration: 60 },
-
       { type: 'regular', instruction: 'Breathe deeply into your heart space', duration: 60 },
-
       { type: 'regular', instruction: 'Repeat softly: I am safe and loved', duration: 60 },
-
       { type: 'regular', instruction: 'Let go of sadness and feel inner peace', duration: 60 },
     ],
   },
@@ -171,17 +141,13 @@ const exercises: Record<string, { type: string; duration: string; gradient: stri
     music: 'Tibetan Bowls',
     steps: [
       { type: 'regular', instruction: 'Sit comfortably and relax your body', duration: 60 },
-
       { type: 'regular', instruction: 'Take slow deep breaths', duration: 60 },
-
       { type: 'regular', instruction: 'Observe your breath carefully', duration: 60 },
-
       { type: 'regular', instruction: 'Notice thoughts without judgment', duration: 60 },
-
       { type: 'regular', instruction: 'Focus on the present moment and stay calm', duration: 60 },
     ],
   },
-}
+};
 
 export function ExerciseSession({
   mood,

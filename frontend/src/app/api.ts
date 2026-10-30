@@ -1,4 +1,6 @@
+
 const DEFAULT_API_URL = 'https://serenity-ai-1xzd.onrender.com';
+
 const API_BASE_URL = `${(import.meta.env.VITE_API_URL || DEFAULT_API_URL).replace(/\/$/, '')}/api`;
 
 export interface MoodSubmitRequest {
@@ -67,8 +69,12 @@ export interface ApiResponse<T> {
 }
 
 class ApiClient {
-  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  private async request<T>(
+    endpoint: string,
+    options: RequestInit = {}
+  ): Promise<T> {
     const url = `${API_BASE_URL}${endpoint}`;
+
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
@@ -78,59 +84,79 @@ class ApiClient {
     });
 
     if (!response.ok) {
-      throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `API request failed: ${response.status} ${response.statusText}`
+      );
     }
 
     return response.json();
   }
 
-  async submitMood(request: MoodSubmitRequest): Promise<ApiResponse<MoodRecord>> {
+  async submitMood(
+    request: MoodSubmitRequest
+  ): Promise<ApiResponse<MoodRecord>> {
     return this.request('/mood', {
       method: 'POST',
       body: JSON.stringify(request),
     });
   }
 
-  async getSongByEmotion(emotion: string): Promise<ApiResponse<SongRecord>> {
-    return this.request(`/songs/emotion/${encodeURIComponent(emotion)}`);
+  async getSongByEmotion(
+    emotion: string
+  ): Promise<ApiResponse<SongRecord>> {
+    return this.request(
+      `/songs/emotion/${encodeURIComponent(emotion)}`
+    );
   }
 
-  async startSession(request: SessionStartRequest): Promise<ApiResponse<SessionRecord>> {
+  async startSession(
+    request: SessionStartRequest
+  ): Promise<ApiResponse<SessionRecord>> {
     return this.request('/session/start', {
       method: 'POST',
       body: JSON.stringify(request),
     });
   }
 
-  async startStep(request: StepStartRequest): Promise<ApiResponse<SessionRecord>> {
+  async startStep(
+    request: StepStartRequest
+  ): Promise<ApiResponse<SessionRecord>> {
     return this.request('/step/start', {
       method: 'POST',
       body: JSON.stringify(request),
     });
   }
 
-  async completeStep(request: StepCompleteRequest): Promise<ApiResponse<SessionRecord>> {
+  async completeStep(
+    request: StepCompleteRequest
+  ): Promise<ApiResponse<SessionRecord>> {
     return this.request('/step/complete', {
       method: 'POST',
       body: JSON.stringify(request),
     });
   }
 
-  async completeBreathing(request: BreathingCompleteRequest): Promise<ApiResponse<Record<string, unknown>>> {
+  async completeBreathing(
+    request: BreathingCompleteRequest
+  ): Promise<ApiResponse<Record<string, unknown>>> {
     return this.request('/breathing/complete', {
       method: 'POST',
       body: JSON.stringify(request),
     });
   }
 
-  async completeSession(request: SessionCompleteRequest): Promise<ApiResponse<SessionRecord>> {
+  async completeSession(
+    request: SessionCompleteRequest
+  ): Promise<ApiResponse<SessionRecord>> {
     return this.request('/session/complete', {
       method: 'POST',
       body: JSON.stringify(request),
     });
   }
 
-  async getSession(sessionId: string): Promise<ApiResponse<SessionRecord>> {
+  async getSession(
+    sessionId: string
+  ): Promise<ApiResponse<SessionRecord>> {
     return this.request(`/session/${sessionId}`);
   }
 
