@@ -1,26 +1,22 @@
-Serenity AI 
+# Serenity AI 🌿
 
-A Mental Wellness Web Application for Stress Reduction and Emotional Well-being
+### A Mental Wellness Web Application for Stress Reduction and Emotional Well-being
 
-Live Demo: Explore Serenity AI
+🌐 **Live Demo:** [Explore Serenity AI](https://serenityai-iota.vercel.app)
 
-GitHub Repository: Serenity AI
+💻 **GitHub Repository:** [Serenity AI](https://github.com/kavya-jangir/Serenity-Ai)
 
-About the Project
+## About the Project
 
 Serenity AI is a mood-based mental wellness application that helps users manage stress and improve emotional well-being through personalized exercises, breathing techniques, and calming music.
 
-Key Features
+## Key Features
 
-Mood-based exercise recommendations
-
-Personalized wellness experience
-
-Guided breathing exercises
-
-Calming music integration
-
-Timed meditation sessions
+- Mood-based exercise recommendations
+- Personalized wellness experience
+- Guided breathing exercises
+- Calming music integration
+- Timed meditation sessions
 
 # Serenity Frontend
 
