@@ -1,4 +1,4 @@
-Serenity AI 🌿
+Serenity AI 
 
 A Mental Wellness Web Application for Stress Reduction and Emotional Well-being
 
